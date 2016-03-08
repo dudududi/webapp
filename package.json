@@ -5,6 +5,7 @@
     "bower": "^1.7.7",
     "express": "4.13.4",
     "gulp": "3.9.1",
+    "gulp-angular-filesort": "^1.1.1",
     "gulp-concat": "^2.6.0",
     "gulp-if": "^2.0.0",
     "gulp-inject": "^3.0.0",
@@ -16,7 +17,5 @@
     "gulp-wiredep": "0.0.0",
     "mongodb": "^2.1.7"
   },
-  "devDependecies":{
-
-  }
+  "devDependecies": {}
 }

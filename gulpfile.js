@@ -7,14 +7,15 @@ var concat = require('gulp-concat');
 var sourcemaps = require('gulp-sourcemaps');
 var wiredep = require('wiredep').stream;
 var inject = require('gulp-inject');
-//var env = process.env.GULP_ENV;
+var angularFilesort = require('gulp-angular-filesort');
+
 
 
 var path = {
     less: 'app/resources/css/**/*.less',
     js: 'app/resources/js/**/*.js',
-    angularCore: 'app/controllers/**/*.js',
-    angularCtrl: 'app/core/**/*.js',
+    angularCore: 'app/angularCore/**/*.js',
+    angularCtrl: 'app/controllers/**/*.js',
     views:'app/views/**/*.html',
     styles:'app/resources/**/*.css'
 };
@@ -53,7 +54,7 @@ gulp.task('views', function () {
 
 gulp.task('inject', function () {
     var target = gulp.src('app/index.html');
-    var sources = gulp.src([path.js,path.angularCore,path.angularCtrl,path.styles], { read: false });
+    var sources = gulp.src([path.js,path.angularCore,path.angularCtrl,path.styles]);
 
     target.pipe(inject(sources,{
         ignorePath: 'app/'

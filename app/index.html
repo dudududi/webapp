@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC >
-<html>
+<html ng-app="APP">
 <head>
   <title>Template</title>
   <meta http-equiv="Content-type" content="text/html; charset=UTF-8"/>
@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="/resources/css/styles.css">
   <!-- endinject -->
 </head>
-<body ng-app="APP">
+<body ng-controller="mainPageCtrl">
   <div ng-cloak>
     <md-content>
       <md-tabs md-dynamic-height md-border-bottom>
@@ -23,7 +23,7 @@
               <md-card>
                  <md-card-title>
                    <md-card-title-text>
-                     <span class="md-headline">{{}}</span>
+                     <span class="md-headline">Test tab</span>
                      <span class="md-subhead">Extra Large</span>
                    </md-card-title-text>
                  </md-card-title>
@@ -48,6 +48,7 @@
         <md-tab label="two">
           <md-content class="md-padding">
             <h1 class="md-display-2">Tab Two</h1>
+            {{test}}
           </md-content>
         </md-tab>
         <md-tab label="three">
@@ -70,8 +71,9 @@
 <script src="../bower_components/angular-material-icons/angular-material-icons.min.js"></script>
 <!-- endbower -->
 <!-- inject:js -->
-<script src="/core/mainApp.js"></script>
-<script src="/core/router.js"></script>
+<script src="/angularCore/mainApp.js"></script>
+<script src="/angularCore/router.js"></script>
+<script src="/controllers/mainPageCtrl.js"></script>
 <!-- endinject -->
 </body>
 </html>

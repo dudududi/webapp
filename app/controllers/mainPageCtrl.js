@@ -1,7 +1,7 @@
 (function (APP) {
     APP.controller('mainPageCtrl', ['$scope', function ($scope) {
         "use strict";
-        $scope.test = "dupa";
+        $scope.test = "testowy scope";
 
     }]);
 }(angular.module('APP')));
