@@ -1,0 +1,17 @@
+{
+  "name": "App",
+  "version": "1.0.0",
+  "description": "App",
+  "main": "public/index.html",
+  "moduleType": [],
+  "authors": "Lukasz",
+  "homepage": "",
+  "private": true,
+  "dependencies": {
+    "angular": "^1.5.0",
+    "jquery": "^2.2.1",
+    "angular-ui-router": "^0.2.18",
+    "angular-material": "^1.0.6",
+    "angular-material-icons": "^0.6.0"
+  }
+}

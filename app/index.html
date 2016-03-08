@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC >
+<html>
+<head>
+  <title>Template</title>
+  <meta http-equiv="Content-type" content="text/html; charset=UTF-8"/>
+  <meta charset="UTF-8" />
+  <!-- bower:css -->
+  <link rel="stylesheet" href="../bower_components/angular-material/angular-material.css"/>
+  <link rel="stylesheet" href="../bower_components/angular-material-icons/angular-material-icons.css"/>
+  <!-- endbower -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="/resources/css/styles.css">
+  <!-- endinject -->
+</head>
+<body ng-app="APP">
+  <div ng-cloak>
+    <md-content>
+      <md-tabs md-dynamic-height md-border-bottom>
+        <md-tab label="one">
+          <md-content class="md-padding">
+            <h1 class="md-display-2">Tab One</h1>
+            <div >
+              <md-card>
+                 <md-card-title>
+                   <md-card-title-text>
+                     <span class="md-headline">{{}}</span>
+                     <span class="md-subhead">Extra Large</span>
+                   </md-card-title-text>
+                 </md-card-title>
+                 <md-card-content layout="row" layout-align="space-between">
+                   <div class="md-media-xl card-media"></div>
+                   <md-card-actions layout="column">
+                     <md-button class="md-icon-button" aria-label="Favorite">
+                       <i class="material-icons">favorite</i>
+                     </md-button>
+                     <md-button class="md-icon-button" aria-label="Settings">
+                       <i class="material-icons">reorder</i>
+                     </md-button>
+                     <md-button class="md-icon-button" aria-label="Share">
+                       <i class="material-icons">reply</i>
+                     </md-button>
+                   </md-card-actions>
+                 </md-card-content>
+               </md-card>
+            </div>
+          </md-content>
+        </md-tab>
+        <md-tab label="two">
+          <md-content class="md-padding">
+            <h1 class="md-display-2">Tab Two</h1>
+          </md-content>
+        </md-tab>
+        <md-tab label="three">
+          <md-content class="md-padding">
+            <h1 class="md-display-2">Tab Three</h1>
+          </md-content>
+        </md-tab>
+      </md-tabs>
+    </md-content>
+  </div>
+
+<!-- bower:js -->
+<script src="../bower_components/jquery/dist/jquery.js"></script>
+<script src="../bower_components/angular/angular.js"></script>
+<script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="../bower_components/angular-animate/angular-animate.js"></script>
+<script src="../bower_components/angular-aria/angular-aria.js"></script>
+<script src="../bower_components/angular-messages/angular-messages.js"></script>
+<script src="../bower_components/angular-material/angular-material.js"></script>
+<script src="../bower_components/angular-material-icons/angular-material-icons.min.js"></script>
+<!-- endbower -->
+<!-- inject:js -->
+<script src="/core/mainApp.js"></script>
+<script src="/core/router.js"></script>
+<!-- endinject -->
+</body>
+</html>
