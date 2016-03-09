@@ -18,7 +18,7 @@ Webapp - kwejk czy coś w tym stylu
 
 ### 3. Podstawowe funkcjonalności ###
 
-* Obsługa Facebook'a
+* Integracja z Facebook'iem
 * Obsługa zdjęć+wideo
 * Upload zdjęć/wideo
 * Mechanizm losowania + głosowanie
