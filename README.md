@@ -1,29 +1,24 @@
-# README #
+# MILESTONES #
 
-Webapp
+Webapp - kwejk czy coś w tym stylu
 
-### What is this repository for? ###
+### 1. Konfiguracja środowiska ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+* Stworzenie i konfiguracja ServerApplication w NodeJS
+* Stworzenie i konfiguracja MongoDB
+* Stworzenie Template i konfiguracja AngularJS
+* Stworzenie Main-Page'a z MaterialDesign
 
-### How do I get set up? ###
+### 2. Tworzenie szablonów stron i podstron ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+* Strona główna
+* Pojedynczy 'mem'
+* Logowanie + rejestracja
+* Dodawanie 'mema'
 
-### Contribution guidelines ###
+### 3. Podstawowe funkcjonalności ###
 
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+* Obsługa Facebook'a
+* Obsługa zdjęć+wideo
+* Upload zdjęć/wideo
+* Mechanizm losowania + głosowanie
