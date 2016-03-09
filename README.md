@@ -7,7 +7,7 @@ Webapp - kwejk czy coś w tym stylu
 * Stworzenie i konfiguracja ServerApplication w NodeJS
 * Stworzenie i konfiguracja MongoDB
 * Stworzenie Template i konfiguracja AngularJS
-* Stworzenie Main-Page'a z MaterialDesign
+* Konfiguracja repozytorium
 
 ### 2. Tworzenie szablonów stron i podstron ###
 
