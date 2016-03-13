@@ -9,60 +9,32 @@ var wiredep = require('wiredep').stream;
 var inject = require('gulp-inject');
 var angularFilesort = require('gulp-angular-filesort');
 
-
-
 var path = {
     less: 'app/resources/css/**/*.less',
     js: 'app/resources/js/**/*.js',
     angularCore: 'app/angularCore/**/*.js',
     angularCtrl: 'app/controllers/**/*.js',
     views:'app/views/**/*.html',
-    styles:'app/resources/**/*.css'
+    styles:'app/resources/**/*.css',
+    mainApp:'app/mainApp.js'
 };
 
-gulp.task('js', function () {
-    return gulp.src([path.js,path.angularCore,path.angularCtrl])
-        //.pipe(concat('javascript.js'))
-        //.pipe(gulpif(env === 'prod', uglify()))
-        //.pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest('public/js'));
-});
-
-
-gulp.task('less', function () {
+gulp.task('compileLess', function () {
     return gulp.src([path.less])
         .pipe(gulpif(/[.]less/, less()))
-        .pipe(concat('styles.css'))
-        .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest('app/resources/css'));
 });
 
-gulp.task('views', function () {
-    return gulp.src([path.views])
-        .pipe(gulp.dest('public/html'));
-});
-
-// gulp.task('img', function () {
-//     return gulp.src('src/Acme/GarageBundle/Resources/public/images/**/*.*')
-//         .pipe(gulp.dest('web/img'));
-// });
-
-// gulp.task('fonts', function () {
-//     return gulp.src('bower_components/bootstrap/fonts/*.{eot,svg,ttf,woff,woff2}')
-//         .pipe(gulp.dest('web/fonts/'));
-// });
-
-gulp.task('inject', function () {
+gulp.task('injectAllFiles',['compileLess'], function () {
     var target = gulp.src('app/index.html');
-    var sources = gulp.src([path.js,path.angularCore,path.angularCtrl,path.styles]);
-
+    var sources = gulp.src([path.mainApp,path.js,path.angularCore,path.angularCtrl,path.styles]);
     target.pipe(inject(sources,{
         ignorePath: 'app/'
     }))
     .pipe(gulp.dest('app/'));
 });
 
-gulp.task('wiredep', function () {
+gulp.task('wiredepBowerFiles', function () {
     gulp.src('app/index.html')
         .pipe(wiredep({
             directory: './bower_components/',
@@ -79,9 +51,6 @@ gulp.task('wiredep', function () {
         .pipe(gulp.dest('app/'));
 });
 
-
-
-
 // gulp.task('watch', function () {
 //     gulp.watch(paths.less, ['less']);
 //     gulp.watch(paths.js, ['js']);
@@ -90,8 +59,7 @@ gulp.task('wiredep', function () {
 //     gulp.watch(paths.html, ['html']);
 // });
 
-
 //define executable tasks when running "gulp" command
-gulp.task('default', ['wiredep','inject','less','views','js'], function(){
+gulp.task('default', ['wiredepBowerFiles','injectAllFiles'], function(){
 
 });

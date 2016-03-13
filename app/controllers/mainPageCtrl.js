@@ -1,7 +1,7 @@
-(function (APP) {
-    APP.controller('mainPageCtrl', ['$scope', function ($scope) {
+(function (mainApp) {
+    mainApp.controller('mainPageCtrl', ['$scope', function ($scope) {
         "use strict";
         $scope.test = "testowy scope";
 
     }]);
-}(angular.module('APP')));
+}(angular.module('mainApp')));

@@ -1,11 +1,28 @@
-(function (APP) {
+(function (mainApp) {
     "use strict";
-    APP.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+    mainApp.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise("/");
         $stateProvider
-            .state('home', {
-                url: "/home",
-                templateUrl: "views/home.html"
+            .state('main', {
+                url: "/main",
+                templateUrl: "templates/mainPage.html"
+            })
+            .state('random', {
+                url: "/random",
+                templateUrl: "templates/random.html"
+            })
+            .state('meme', {
+                url: "/meme/{id}",
+                templateUrl: "templates/meme.html"
+            })
+            .state('waiting', {
+                url: "/waiting",
+                templateUrl: "templates/waiting.html"
+            })
+            .state('add', {
+                url: "/add",
+                templateUrl: "templates/add.html"
             });
+
     }]);
-}(angular.module('APP')));
+}(angular.module('mainApp')));
