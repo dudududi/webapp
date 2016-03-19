@@ -22,6 +22,10 @@
             .state('add', {
                 url: "/add",
                 templateUrl: "templates/add.html"
+            })
+            .state('register', {
+                url: "/register",
+                templateUrl: "templates/register.html"
             });
 
     }]);

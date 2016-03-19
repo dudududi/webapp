@@ -18,6 +18,10 @@
       url: "add",
       name: "Dodaj",
       hidden: false
+    }, {
+      url: "register",
+      name: "Rejestracja",
+      hidden: false
     }];
 
     var originatorEv;
