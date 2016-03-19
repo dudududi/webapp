@@ -1,65 +1,91 @@
 <!DOCTYPE HTML PUBLIC >
 <html ng-app="mainApp">
-  <head>
-    <title>Bolek.sb</title>
-    <meta http-equiv="Content-type" content="text/html; charset=UTF-8"/>
-    <meta charset="UTF-8"/>
-    <!-- bower:css -->
-    <link rel="stylesheet" href="../bower_components/angular-material/angular-material.css"/>
-    <link rel="stylesheet" href="../bower_components/angular-material-icons/angular-material-icons.css"/>
-    <!-- endbower -->
-    <!-- inject:css -->
-    <link rel="stylesheet" href="/resources/css/site.css">
-    <!-- endinject -->
-  </head>
-  <body ng-controller="appCtrl">
-    <div ng-cloak>
-      <md-toolbar>
-        <div class="md-toolbar-tools">
-          <md-button class="md-icon-button">
-            <span class="material-icons">menu</span>
+<head>
+  <title>Bolek.sb</title>
+  <meta http-equiv="Content-type" content="text/html; charset=UTF-8"/>
+  <meta charset="UTF-8"/>
+  <!-- bower:css -->
+  <link rel="stylesheet" href="../bower_components/angular-material/angular-material.css"/>
+  <link rel="stylesheet" href="../bower_components/angular-material-icons/angular-material-icons.css"/>
+  <!-- endbower -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="/resources/css/site.css">
+  <!-- endinject -->
+</head>
+<body ng-controller="appCtrl">
+<div ng-cloak>
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <md-button class="md-icon-button">
+        <span class="material-icons">menu</span>
+      </md-button>
+      <h2>
+        <span>Bolek.sb</span>
+      </h2>
+      <span flex></span>
+      <div class="md-menu" ng-controller="loginCtrl as c" ng-cloak>
+        <md-menu>
+          <md-button class="md-fab md-hue2" ng-click="c.openMenu($mdOpenMenu, $event)">
+            <md-icon md-svg-src="resources/img/icons/ic_person_outline_black_24px.svg"></md-icon>
           </md-button>
-          <h2>
-            <span>Bolek.sb</span>
-          </h2>
-          <span flex></span>
-          <md-button class="md-icon-button">
-            <span class="material-icons">more_vert</span>
-          </md-button>
-        </div>
-
-        <md-tabs md-stretch-tabs class="md-primary" md-selected="data.selectedIndex">
-          <md-tab ng-repeat="tab in menuTabs" ui-sref="{{tab.url}}">
-            <span>{{tab.name}}</span>
-          </md-tab>
-
-        </md-tabs>
-
-      </md-toolbar>
+          <md-menu-content width="5">
+            <form name="userForm">
+              <md-menu-item>
+                <md-input-container>
+                  <label>Email</label>
+                  <input type="email">
+                </md-input-container>
+              </md-menu-item>
+              <md-menu-item>
+                <md-input-container>
+                  <label>Haslo</label>
+                  <input type="password">
+                </md-input-container>
+              </md-menu-item>
+            </form>
+            <md-menu-item>
+              <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+                <md-button class="md-raised">Zaloguj</md-button>
+                <md-button class="md-raised md-warn" ui-sref="register" >Rejestracja</md-button>
+              </section>
+            </md-menu-item>
+          </md-menu-content>
+        </md-menu>
+      </div>
     </div>
-    <div ui-view></div>
 
-    <!-- bower:js -->
-    <script src="../bower_components/jquery/dist/jquery.js"></script>
-    <script src="../bower_components/angular/angular.js"></script>
-    <script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="../bower_components/angular-animate/angular-animate.js"></script>
-    <script src="../bower_components/angular-aria/angular-aria.js"></script>
-    <script src="../bower_components/angular-messages/angular-messages.js"></script>
-    <script src="../bower_components/angular-material/angular-material.js"></script>
-    <script src="../bower_components/angular-material-icons/angular-material-icons.min.js"></script>
-    <!-- endbower -->
-    <!-- inject:js -->
-    <script src="/mainApp.js"></script>
-    <script src="/angularCore/router.js"></script>
-    <script src="/controllers/addCtrl.js"></script>
-    <script src="/controllers/appCtrl.js"></script>
-    <script src="/controllers/loginCtrl.js"></script>
-    <script src="/controllers/mainPageCtrl.js"></script>
-    <script src="/controllers/memeCtrl.js"></script>
-    <script src="/controllers/randomCtrl.js"></script>
-    <script src="/controllers/registerCtrl.js"></script>
-    <script src="/controllers/waitingCtrl.js"></script>
-    <!-- endinject -->
-  </body>
+    <md-tabs md-stretch-tabs class="md-primary" md-selected="data.selectedIndex">
+      <md-tab ng-repeat="tab in menuTabs" ui-sref="{{tab.url}}">
+        <span>{{tab.name}}</span>
+      </md-tab>
+
+    </md-tabs>
+
+  </md-toolbar>
+</div>
+<div ui-view></div>
+
+<!-- bower:js -->
+<script src="../bower_components/jquery/dist/jquery.js"></script>
+<script src="../bower_components/angular/angular.js"></script>
+<script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="../bower_components/angular-animate/angular-animate.js"></script>
+<script src="../bower_components/angular-aria/angular-aria.js"></script>
+<script src="../bower_components/angular-messages/angular-messages.js"></script>
+<script src="../bower_components/angular-material/angular-material.js"></script>
+<script src="../bower_components/angular-material-icons/angular-material-icons.min.js"></script>
+<!-- endbower -->
+<!-- inject:js -->
+<script src="/mainApp.js"></script>
+<script src="/angularCore/router.js"></script>
+<script src="/controllers/addCtrl.js"></script>
+<script src="/controllers/appCtrl.js"></script>
+<script src="/controllers/loginCtrl.js"></script>
+<script src="/controllers/mainPageCtrl.js"></script>
+<script src="/controllers/memeCtrl.js"></script>
+<script src="/controllers/randomCtrl.js"></script>
+<script src="/controllers/registerCtrl.js"></script>
+<script src="/controllers/waitingCtrl.js"></script>
+<!-- endinject -->
+</body>
 </html>

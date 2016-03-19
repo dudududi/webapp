@@ -42,6 +42,10 @@
       );
       originatorEv = null;
     };
+    
+    $scope.go = function (path) {
+      $state.go(path);
+    };
 
   }]);
 }(angular.module('mainApp')));
