@@ -11,10 +11,10 @@ Webapp - kwejk czy coś w tym stylu
 
 ### 2. Tworzenie szablonów stron i podstron ###
 
-* Strona główna
-* Pojedynczy 'mem'
-* Logowanie + rejestracja
-* Dodawanie 'mema'
+* Strona główna (Łukasz)
+* Pojedynczy 'mem' (Adrian)
+* Logowanie + rejestracja (Szymon)
+* Dodawanie 'mema' (Kamil)
 
 ### 3. Podstawowe funkcjonalności ###
 
