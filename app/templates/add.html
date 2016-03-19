@@ -1,2 +1,23 @@
 <!DOCTYPE HTML PUBLIC >
-Dodaj
+<div ng-controller="addCtrl">
+    <md-input-container class="md-block">
+       <label>Title</label>
+       <input ng-model="newMeme.title">
+    </md-input-container>
+    <md-input-container class="md-block">
+       <label>Description</label>
+       <input ng-model="newMeme.description">
+    </md-input-container>
+    <md-input-container class="md-block">
+       <label>Author</label>
+       <input ng-model="newMeme.author">
+    </md-input-container>
+    <md-input-container class="md-block">
+       <label>Img Path</label>
+       <input ng-model="newMeme.imgUrl">
+    </md-input-container>
+
+    <md-button class="md-raised md-primary" ng-click="saveMeme(newMeme)">
+        <span >Dodaj mema</span>
+    </md-button>
+</div>

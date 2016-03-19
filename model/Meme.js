@@ -4,11 +4,18 @@ var Schema = mongoose.Schema;
 var memeSchema = new Schema({
   title: String,
   description: String,
-  created_at: Date
+  created_at: Date,
+  author: String,
+  imgUrl: String,
+  comments: [{ body: String, date: Date ,author: String}],
+  meta: {
+    like: Number,
+    unlike:  Number
+  }
 });
 
 memeSchema.pre('save', function(next) {
-  var error = undefined;
+  var error = null;
   if (!this.title) {
     error = new Error("Title is missing!");
   } else if (!this.description) {
@@ -18,8 +25,12 @@ memeSchema.pre('save', function(next) {
     var currentDate = new Date();
     this.created_at = currentDate;
   }
+  this.meta.like = 0;
+  this.meta.unlike = 0;
+
   next(error);
 });
+
 /*
 here you can add custom methods
 important! methods needs to be added BEFORE creating model

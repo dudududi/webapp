@@ -1,14 +1,10 @@
 <!DOCTYPE HTML PUBLIC >
 <div ng-controller="mainPageCtrl">
-
-{{memy}}
-
-
-  <md-card>
+  <md-card ng-repeat="meme in memeData">
     <md-card-title>
       <md-card-title-text>
-        <span class="md-headline">Mem 1</span>
-        <span class="md-subhead">Opis mema</span>
+        <span class="md-headline">{{meme.title}}</span>
+        <span class="md-subhead"><i>{{meme.author}}, {{meme.created_at | date:"yyyy-MM-dd hh:mm"}}, {{meme.description}}</i></span>
       </md-card-title-text>
     </md-card-title>
     <md-card-content layout="row" layout-align="space-between">
@@ -22,6 +18,9 @@
         </md-button>
         <md-button class="md-icon-button" aria-label="Share">
             <span class="material-icons">reply</span>
+        </md-button>
+        <md-button class="md-raised md-primary" ng-if="isAdmin" ng-click="removeMeme(meme)">
+          <span >Usuń mema</span>
         </md-button>
       </md-card-actions>
     </md-card-content>

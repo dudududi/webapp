@@ -1,1 +1,1 @@
-call node server.js
+call node server.js --db remote
