@@ -1,39 +1,43 @@
 <!DOCTYPE HTML PUBLIC >
 <div ng-controller="addCtrl">
-    <form name="newMemeForm">
-        <md-input-container class="md-block">
-            <label>Tytuł mema</label>
-            <input md-maxlength="50" required name="title" ng-model="newMeme.title">
-            <div ng-messages="newMemeForm.title.$error">
-                <div ng-message="required">Tytuł jest wymagany.</div>
-                <div ng-message="md-maxlength">Tytuł nie może mieć więcej niż 50 znaków.</div>
-            </div>
-        </md-input-container>
-        <md-input-container class="md-block">
-            <label>Opis mema</label>
-            <input md-maxlength="100" name="description" ng-model="newMeme.description">
-            <div ng-messages="newMemeForm.description.$error">
-                <div ng-message="md-maxlength">Opis nie może mieć więcej niż 100 znaków.</div>
-            </div>
-        </md-input-container>
-        <md-input-container class="md-block">
-            <label>Autor mema</label>
-            <input required name="author" ng-model="newMeme.author">
-            <div ng-messages="newMemeForm.author.$error">
-                <div ng-message="required">Autor jest wymagany.</div>
-            </div>
-        </md-input-container>
-        <md-input-container class="md-block">
-            <label>Scieżka do zdjecia</label>
-            <input required name="imgUrl" ng-model="newMeme.imgUrl">
-            <div ng-messages="newMemeForm.imgUrl.$error">
-                <div ng-message="required">Ścieżka jest wymagana.</div>
-            </div>
-        </md-input-container>
+    <div style="float: left; width: 600px;" >
+        <form name="newMemeForm">
+            <md-input-container class="md-block">
+                <label>Tytuł mema</label>
+                <input md-maxlength="50" required name="title" ng-model="newMeme.title" ng-change="generateMeme()">
+                <div ng-messages="newMemeForm.title.$error">
+                    <div ng-message="required">Tytuł jest wymagany.</div>
+                    <div ng-message="md-maxlength">Tytuł nie może mieć więcej niż 50 znaków.</div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Opis mema</label>
+                <input md-maxlength="100" name="description" ng-model="newMeme.description" ng-change="generateMeme()">
+                <div ng-messages="newMemeForm.description.$error">
+                    <div ng-message="md-maxlength">Opis nie może mieć więcej niż 100 znaków.</div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Autor mema</label>
+                <input required name="author" ng-model="newMeme.author">
+                <div ng-messages="newMemeForm.author.$error">
+                    <div ng-message="required">Autor jest wymagany.</div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Scieżka do zdjecia</label>
+                <input required name="imgUrl" ng-model="newMeme.imgUrl">
+                <div ng-messages="newMemeForm.imgUrl.$error">
+                    <div ng-message="required">Ścieżka jest wymagana.</div>
+                </div>
+            </md-input-container>
 
-        <md-button class="md-raised md-primary" ng-click="saveMeme(newMeme)">
-            <span>Dodaj mema</span>
-        </md-button>
-    </form>
-
+            <md-button class="md-raised md-primary" ng-click="saveMeme(newMeme)">
+                <span>Dodaj mema</span>
+            </md-button>
+        </form>
+    </div>
+    <div>
+        <memegenerator></memegenerator>
+    </div>
 </div>

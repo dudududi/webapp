@@ -32,7 +32,6 @@ function PublicAPI(_app) {
                 }
             })
             .put(function(req,res) {
-                console.log(req.body);
                 var meme = req.body;
                 Meme.update({ "_id": meme._id }, meme, function (err, result) {
                     if (err) {
