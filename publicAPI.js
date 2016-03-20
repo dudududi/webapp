@@ -9,7 +9,7 @@ function PublicAPI(_app) {
             .get(function(req, res) {
                 Meme.find({}).exec(function(err, result) {
                     if (err) {
-                        res.json(err);
+                        res.status(400).json(err);
                     } else {
                         res.json(result);
                     }
@@ -20,7 +20,7 @@ function PublicAPI(_app) {
                     var meme = new Meme(req.body);
                     meme.save(function(err) {
                         if (err) {
-                            res.json({
+                            res.status(400).json({
                                 error: err.message
                             });
                         } else {
@@ -40,7 +40,7 @@ function PublicAPI(_app) {
             app.delete('/meme/:id',function(req,res) {
                 Meme.findOne({_id:req.params.id}).remove().exec(function(err, result) {
                     if (err) {
-                        res.json(err);
+                        res.status(400).json(err);
                     } else {
                         res.json(result);
                     }
