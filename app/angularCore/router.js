@@ -1,7 +1,7 @@
 (function (mainApp) {
     "use strict";
     mainApp.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
-        $urlRouterProvider.otherwise("/");
+        $urlRouterProvider.otherwise("/main");
         $stateProvider
             .state('main', {
                 url: "/main",
@@ -12,8 +12,11 @@
                 templateUrl: "templates/random.html"
             })
             .state('meme', {
-                url: "/meme/{id}",
-                templateUrl: "templates/meme.html"
+                url: "/meme/:memeId",
+                templateUrl: "templates/meme.html",
+                controller: ['$scope', '$stateParams', function ($scope, $stateParams) {
+                   $scope.memeId = $stateParams.memeId;
+               }]
             })
             .state('waiting', {
                 url: "/waiting",

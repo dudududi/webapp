@@ -6,7 +6,7 @@
             maxOpened: 0,
             newestOnTop: true,
             positionClass: 'toast-bottom-right',
-            preventDuplicates: false,
+            preventDuplicates: true,
             preventOpenDuplicates: false,
             target: 'body'
           });

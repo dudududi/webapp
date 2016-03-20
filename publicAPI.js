@@ -25,7 +25,7 @@ function PublicAPI(_app) {
                             });
                         } else {
                             res.json({
-                                status: "saved"
+                                status: "Saved"
                             });
                         }
                     });
@@ -33,11 +33,31 @@ function PublicAPI(_app) {
             })
             .put(function(req,res) {
                 console.log(req.body);
-                res.send(req.body.data);
-
-
+                var meme = req.body;
+                Meme.update({ "_id": meme._id }, meme, function (err, result) {
+                    if (err) {
+                        res.json({
+                            error: err.message
+                        });
+                    } else {
+                        res.json({
+                            status: "Updated"
+                        });
+                    }
+                });
             });
-            app.delete('/meme/:id',function(req,res) {
+
+            app.route('/meme/:id')
+            .get(function(req,res) {
+                Meme.findOne({_id:req.params.id}).exec(function(err, result) {
+                    if (err) {
+                        res.json(err);
+                    } else {
+                        res.json(result);
+                    }
+                });
+            })
+            .delete(function(req,res) {
                 Meme.findOne({_id:req.params.id}).remove().exec(function(err, result) {
                     if (err) {
                         res.json(err);
@@ -46,8 +66,6 @@ function PublicAPI(_app) {
                     }
                 });
             });
-
-
     };
 
     //public method where all routes will be defined.
