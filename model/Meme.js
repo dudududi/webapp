@@ -8,10 +8,8 @@ var memeSchema = new Schema({
   author: String,
   imgUrl: String,
   comments: [{ body: String, date: Date ,author: String}],
-  meta: {
-    like: Number,
-    unlike:  Number
-  }
+  like: Number
+
 });
 
 memeSchema.pre('save', function(next) {
@@ -25,8 +23,7 @@ memeSchema.pre('save', function(next) {
     var currentDate = new Date();
     this.created_at = currentDate;
   }
-  this.meta.like = 0;
-  this.meta.unlike = 0;
+  this.like = 0;
 
   next(error);
 });

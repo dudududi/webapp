@@ -1,25 +1,64 @@
 <!DOCTYPE HTML PUBLIC >
 <div ng-controller="memeCtrl">
-  <md-card>
-    <md-card-title>
-      <md-card-title-text>
-        <span class="md-headline">Mem 1</span>
-        <span class="md-subhead">Opis mema</span>
-      </md-card-title-text>
-    </md-card-title>
-    <md-card-content layout="row" layout-align="space-between">
-      <div class="md-media-xl card-media"></div>
-      <md-card-actions layout="column">
-        <md-button class="md-icon-button" aria-label="Favorite">
-          <span class="material-icons">favorite</span>
-        </md-button>
-        <md-button class="md-icon-button" aria-label="Settings">
-            <span class="material-icons">menu</span>
-        </md-button>
-        <md-button class="md-icon-button" aria-label="Share">
-            <span class="material-icons">reply</span>
-        </md-button>
-      </md-card-actions>
-    </md-card-content>
-  </md-card>
+    <md-card style="width:800px; text-align:left;" ng-if="!edited">
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">{{memeData.title}}</span>
+                <span class="md-subhead">
+                    <i>{{memeData.author}},
+                        {{memeData.created_at | date:"yyyy-MM-dd hh:mm"}},
+                        {{memeData.description}}</i>
+                </span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content layout="row" layout-align="space-between">
+            <div class="xl-media card-media" style="margin-top:60px;" >
+                <div>
+                    <img ng-src="{{memeData.imgUrl}}" width="600px" height="450px"/>
+                </div>
+            </div>
+            <md-card-actions layout="column">
+                <md-button class="md-icon-button md-accent" ng-click="likeMeme(memeData)">
+                    <span class="material-icons">favorite</span>
+                </md-button>
+                <md-button class="md-icon-button" ng-click="unlikeMeme(memeData)">
+                    <span class="material-icons">thumb_down</span>
+                </md-button>
+                <md-button class="md-icon-button" ng-disabled="true">
+                    <span class="material-icons">reply</span>
+                </md-button>
+                <md-button class="md-icon-button" ng-if="isAdmin" ng-click="editMeme()">
+                    <span class="material-icons">settings</span>
+                </md-button>
+                <md-button class="md-icon-button" ng-if="isAdmin" ng-click="removeMeme(memeData)">
+                    <span class="material-icons">delete_forever</span>
+                </md-button>
+                <md-button class="md-fab md-mini" style="margin-top: 190px;" ng-class="memeData.like>0?'':'md-primary'">
+                    <span>{{memeData.like}}</span>
+                </md-button>
+            </md-card-actions>
+        </md-card-content>
+    </md-card>
+    <md-card style="width:800px; text-align:left;" ng-if="edited && isAdmin">
+        <md-card-title>
+            <md-card-title-text>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content layout-align="space-between" style="margin-top:20px">
+            <md-input-container class="md-block">
+               <label>Tytył</label>
+               <input ng-model="editedMeme.title">
+            </md-input-container>
+            <md-input-container class="md-block" >
+               <label>Ścieżka</label>
+               <input ng-model="editedMeme.imgUrl">
+            </md-input-container>
+            <md-button class="md-raised md-primary" ng-click="saveMeme(editedMeme)">
+                <span>Zapisz</span>
+            </md-button>
+            <md-button class="md-raised md-primary" ng-click="editMeme()">
+                <span>Cofnij</span>
+            </md-button>
+        </md-card-content>
+    </md-card>
 </div>
