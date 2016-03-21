@@ -1,2 +1,52 @@
 <!DOCTYPE HTML PUBLIC >
-Rejestracja
+<div ng-controller="registerCtrl as c" layout="column" ng-cloack class="md-inline-form">
+    <md-toolbar class="md-warn">
+        <div class="md-toolbar-tools">
+            <h2 class="md-flex">Rejestracja</h2>
+        </div>
+    </md-toolbar>
+    <form name="userForm">
+        <md-content class="md-no-momentum">
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                <label>Login</label>
+                <md-icon>
+                    <span class="material-icons">person_add</span>
+                </md-icon>
+                <input ng-model="user.login" type="text" name="login" required maxlength="15" minlength="3">
+                <div ng-messages="userForm.login.$error">
+                    <div ng-message="required">Login jest wymagany</div>
+                    <div ng-message-exp="['minlength', 'maxlength']">Login powinien zawierac od 3 do 15 znakow</div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                <label>Email</label>
+                <md-icon>
+                    <span class="material-icons">email</span>
+                </md-icon>
+                <input ng-model="user.email" type="email" name="email" required ng-pattern="/^.+@.+\..+$/">
+                <div ng-messages="userForm.email.$error">
+                    <div ng-message-exp="['required', 'pattern']">
+                        Email jest wymagany oraz powinien wygladac w formacie "xxx@xxx.xx"
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                <label>Password</label>
+                <md-icon>
+                    <span class="material-icons">vpn_key</span>
+                </md-icon>
+                <input ng-model="user.password" name="password" type="password" minlength="8" required>
+                <div ng-messages="userForm.password.$error">
+                    <div ng-message="minlength">Haslo powinno zawierac conajmniej 8 znakow</div>
+                    <div ng-message="required">Haslo jest wymagane</div>
+                </div>
+            </md-input-container>
+            <md-input-container>
+                <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+                    <md-button class="md-raised md-primary" ng-disabled="userForm.$invalid">Zarejestruj</md-button>
+                    <md-button class="md-raised md-warn" ng-click="clearForm()">Resetuj</md-button>
+                </section>
+            </md-input-container>
+         </md-content>
+    </form>
+</div>
