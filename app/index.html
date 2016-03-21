@@ -31,18 +31,18 @@
                         <form name="userForm">
                             <md-menu-item>
                                 <md-input-container md-no-float class="md-block">
-                                    <input type="text" placeholder="Login" ng-model="user.login" name="login" required>
+                                    <input type="text" placeholder="Login" ng-model="user.login" name="login">
                                 </md-input-container>
                             </md-menu-item>
                             <md-menu-item>
                                 <md-input-container md-no-float class="md-block">
-                                    <input type="password" placeholder="Haslo" ng-model="user.email" name="password" required>
+                                    <input type="password" placeholder="Haslo" ng-model="user.password" name="password">
                                 </md-input-container>
                             </md-menu-item>
 
                             <md-menu-item>
                                 <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-                                    <md-button class="md-raised" ng-disabled="userForm.$invalid">Zaloguj</md-button>
+                                    <md-button class="md-raised" ng-disabled="user.login === '' || user.password === '' ">Zaloguj</md-button>
                                     <md-button class="md-raised md-warn" ui-sref="register">Rejestracja</md-button>
                                 </section>
                             </md-menu-item>
