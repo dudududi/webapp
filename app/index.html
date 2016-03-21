@@ -31,23 +31,22 @@
                                 <form name="userForm">
                                     <md-menu-item>
                                         <md-input-container>
-                                            <label>Email</label>
-                                            <input type="email">
+                                            <input type="text" placeholder="Login" ng-model="user.login" name="login">
                                         </md-input-container>
                                     </md-menu-item>
                                     <md-menu-item>
                                         <md-input-container>
-                                            <label>Haslo</label>
-                                            <input type="password">
+                                            <input type="password" type="text" placeholder="Password" ng-model="user.password" name="password">
                                         </md-input-container>
                                     </md-menu-item>
+
+                                    <md-menu-item>
+                                        <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+                                            <md-button class="md-raised" ng-disabled="user.login==='' || user.password=''">Zaloguj</md-button>
+                                            <md-button class="md-raised md-warn" ui-sref="register">Rejestracja</md-button>
+                                        </section>
+                                    </md-menu-item>
                                 </form>
-                                <md-menu-item>
-                                    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-                                        <md-button class="md-raised">Zaloguj</md-button>
-                                        <md-button class="md-raised md-warn" ui-sref="register">Rejestracja</md-button>
-                                    </section>
-                                </md-menu-item>
                             </md-menu-content>
                         </md-menu>
                     </div>
