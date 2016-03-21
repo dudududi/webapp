@@ -2,6 +2,8 @@
   mainApp.controller('appCtrl',['$scope','$mdDialog',  function($scope,$mdDialog) {
     "use strict";
     $scope.userLogin = "user_name";
+    $scope.isAdmin = true;  //TODO change to user roles 
+
     $scope.menuTabs = [{
       url: "main",
       name: "Głowna",
@@ -42,7 +44,7 @@
       );
       originatorEv = null;
     };
-    
+
     $scope.go = function (path) {
       $state.go(path);
     };

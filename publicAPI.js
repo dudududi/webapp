@@ -9,7 +9,7 @@ function PublicAPI(_app) {
             .get(function(req, res) {
                 Meme.find({}).exec(function(err, result) {
                     if (err) {
-                        res.json(err);
+                        res.status(400).json(err);
                     } else {
                         res.json(result);
                     }
@@ -20,34 +20,51 @@ function PublicAPI(_app) {
                     var meme = new Meme(req.body);
                     meme.save(function(err) {
                         if (err) {
-                            res.json({
+                            res.status(400).json({
                                 error: err.message
                             });
                         } else {
                             res.json({
-                                status: "saved"
+                                status: "Saved"
                             });
                         }
                     });
                 }
             })
             .put(function(req,res) {
-                console.log(req.body);
-                res.send(req.body.data);
-
-
+                var meme = req.body;
+                Meme.update({ "_id": meme._id }, meme, function (err, result) {
+                    if (err) {
+                        res.json({
+                            error: err.message
+                        });
+                    } else {
+                        res.json({
+                            status: "Updated"
+                        });
+                    }
+                });
             });
-            app.delete('/meme/:id',function(req,res) {
-                Meme.findOne({_id:req.params.id}).remove().exec(function(err, result) {
+
+            app.route('/meme/:id')
+            .get(function(req,res) {
+                Meme.findOne({_id:req.params.id}).exec(function(err, result) {
                     if (err) {
                         res.json(err);
                     } else {
                         res.json(result);
                     }
                 });
+            })
+            .delete(function(req,res) {
+                Meme.findOne({_id:req.params.id}).remove().exec(function(err, result) {
+                    if (err) {
+                        res.status(400).json(err);
+                    } else {
+                        res.json(result);
+                    }
+                });
             });
-
-
     };
 
     //public method where all routes will be defined.
