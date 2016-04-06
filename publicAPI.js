@@ -1,5 +1,6 @@
 //==================> DATABASE MODEL IMPORTS <==================
 var Meme = require('./model/Meme');
+var User = require('./model/User');
 
 function PublicAPI(_app) {
     var app = _app;
@@ -67,9 +68,37 @@ function PublicAPI(_app) {
             });
     };
 
+    var authenticationJWT = function () {
+        app.route('/authentication')
+            .post(function (req, res) {
+                User.findOne({login: req.body.login, password: req.body.password}, function (err, user) {
+                    if(err){
+                        res.json({
+                            type: false,
+                            data: "Error occured: " + err
+                        });
+                    } else{
+                        if (user) {
+                            res.json({
+                                type: true,
+                                data: user,
+                                token: user.token
+                            });
+                        } else {
+                            res.json({
+                                type: false,
+                                data: "Incorrect login/password"
+                            });
+                        }
+                    }
+                });
+            });
+    };
+
     //public method where all routes will be defined.
     this.create = function() {
         memeRoute();
+        authenticationJWT();
     };
 }
 

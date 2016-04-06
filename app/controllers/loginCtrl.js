@@ -14,7 +14,7 @@
                 login:'',
                 password:''
             };
-        }
+        };
 
         var organizatorEv;
 
