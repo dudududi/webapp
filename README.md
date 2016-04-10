@@ -21,4 +21,5 @@ Webapp - kwejk czy coś w tym stylu
 * Integracja z Facebook'iem
 * Obsługa zdjęć+wideo
 * Upload zdjęć/wideo
-* Mechanizm losowania + głosowanie
+* Mechanizm losowania + głosowanie //@łukasz - ja to bym losowanie zrobił na zasadzie ilości like-ów
+* Dodanie komentarzy do mema - pełny CRUD (Łukasz)
