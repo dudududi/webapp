@@ -1,12 +1,12 @@
 <!DOCTYPE HTML PUBLIC >
 <div ng-controller="mainPageCtrl">
-    <md-card ng-repeat="meme in memeData" style="width:800px; text-align:left;">
+    <md-card ng-repeat="meme in memeData | orderBy:'created_at'" style="width:800px; text-align:left;">
         <md-card-title ui-sref="meme({memeId:meme._id})" style="cursor:pointer">
             <md-card-title-text>
                 <span class="md-headline">{{meme.title}}</span>
-                <span class="md-subhead">
+                <span class="md-subhead" style="color:gray; font-size:12px">
                     <i>{{meme.author}},
-                        {{meme.created_at | date:"yyyy-MM-dd hh:mm"}},
+                        {{meme.created_at | date:"HH:mm dd.MM.yyyy"}},
                         {{meme.description}}</i>
                 </span>
             </md-card-title-text>
