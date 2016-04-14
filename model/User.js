@@ -1,8 +1,8 @@
 /**
  * Created by Szymon on 04.04.2016.
  */
-var mongose = require('mongoose');
-var Schema = mongose.Scema;
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
     email: String,
@@ -11,4 +11,4 @@ var UserSchema = new Schema({
     token: String
 });
 
-module.exports = mongose.model('User', UserSchema);
+module.exports = mongoose.model('User', UserSchema);

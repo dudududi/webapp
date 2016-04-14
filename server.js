@@ -5,7 +5,7 @@ var express = require('express'),
     mongoose = require('mongoose'),
     bodyParser = require('body-parser'),
     morgan = require('morgan'),
-    jwt = require('jwt');
+    jwt = require('jsonwebtoken');
 
 //==================> DATABASE URI <==================
 var remoteDBUrl = 'mongodb://admin:admin@ds062178.mlab.com:62178/db_projeckt';
@@ -48,11 +48,11 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(morgan("dev"));
 app.use(function (req, res, next) {
-  res.setHandler('Access-Control-Allow-Origin', '*');
-  res.setHandler('Access-Control-Allow-Methods', 'GET, POST');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
   next();
-})
+});
 app.listen(argv.port);
 console.log('Server running on port ' + argv.port);
 
@@ -60,3 +60,8 @@ console.log('Server running on port ' + argv.port);
 var PublicAPI = require('./publicAPI');
 var publicAPI = new PublicAPI(app);
 publicAPI.create();
+
+//If NodeJs app crash, we will see log in console
+process.on('uncaughtException', function (err) {
+  console.log(err);
+});
