@@ -2,7 +2,9 @@
   "name": "App",
   "version": "0.0.1",
   "dependencies": {
+    "body-parser": "^1.15.0",
     "bower": "^1.7.7",
+    "connect-multiparty": "^2.0.0",
     "express": "4.13.4",
     "gulp": "3.9.1",
     "gulp-angular-filesort": "^1.1.1",
@@ -16,8 +18,7 @@
     "gulp-uglifycss": "^1.0.6",
     "gulp-wiredep": "0.0.0",
     "mongodb": "^2.1.7",
-    "mongoose": "^4.4.6",
-    "body-parser": "^1.15.0"
+    "mongoose": "^4.4.6"
   },
   "devDependecies": {}
 }

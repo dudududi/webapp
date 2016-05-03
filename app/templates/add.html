@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC >
 <div ng-controller="addCtrl">
-    <div style="float: left; width: 600px;" >
+    <div style="float: left; width: 600px;">
         <form name="newMemeForm">
             <md-input-container class="md-block">
                 <label>Tytuł mema</label>
@@ -37,7 +37,19 @@
             </md-button>
         </form>
     </div>
-    <div>
+    <div id="imgUpload" style="float: left; width: 600px;">
         <memegenerator></memegenerator>
+        <div ng-if="fileChoosen" class="animate-if">
+            HEHEHE ELO
+        </div>
+        <div ng-if="!fileChoosen" class="animate-if">
+            <div ngf-drop ngf-select ngf-change="loadImage($file)" class="drop-box"
+                 ngf-drag-over-class="'dragover'" accept="image/*" ngf-pattern="'image/*'">
+                Klinij lub przeciagnij zdjecie tutaj
+            </div>
+            <div ngf-no-file-drop>
+                <md-button class="md-raised md-primary" ngf-select ng-model="file" ngf-multiple="false">Wybierz zdjecie</md-button>
+            </div>
+        </div>
     </div>
 </div>

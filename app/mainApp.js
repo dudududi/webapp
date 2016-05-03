@@ -1,5 +1,5 @@
 (function () {
-    angular.module('mainApp', ['ui.router','ngMaterial','angular-loading-bar','toastr', 'ngMaterial', 'ngMessages']).config(function(toastrConfig) {
+    angular.module('mainApp', ['ui.router','ngMaterial','angular-loading-bar','toastr', 'ngMaterial', 'ngMessages', 'ngFileUpload']).config(function(toastrConfig) {
         angular.extend(toastrConfig, {
             autoDismiss: false,
             containerId: 'toast-container',

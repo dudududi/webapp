@@ -1,5 +1,7 @@
 //==================> DATABASE MODEL IMPORTS <==================
 var Meme = require('./model/Meme');
+var multiparty = require('connect-multiparty');
+var multipartyMiddleware = multiparty();
 
 function PublicAPI(_app) {
     var app = _app;
@@ -64,6 +66,12 @@ function PublicAPI(_app) {
                         res.json(result);
                     }
                 });
+            });
+
+            app.post('meme/upload', multipartyMiddleware, function(req, res){
+                var file = req.files.file;
+                console.log(file.name);
+                console.log(file.type);
             });
     };
 
