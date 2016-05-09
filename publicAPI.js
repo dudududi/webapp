@@ -3,15 +3,16 @@ var Meme = require('./model/Meme');
 
 function PublicAPI(_app) {
     var app = _app;
+    var pageLimit = 10;
     // private method which define CRUD API for Memes.
     var memeRoute = function () {
         app.route('/meme')
             .get(function (req, res) {
-                Meme.find({}).exec(function (err, result) {
+                Meme.find({'like':{'$gt': 5 }}).count().exec(function (err, result) {
                     if (err) {
                         res.status(400).json(err);
                     } else {
-                        res.json(result);
+                        res.json({page: parseInt(Math.ceil(result/pageLimit)), count: result});
                     }
                 });
             })
@@ -33,6 +34,7 @@ function PublicAPI(_app) {
             })
             .put(function (req, res) {
                 var meme = req.body;
+                meme.edited_at = new Date();
                 Meme.update({
                     "_id": meme._id
                 }, meme, function (err, result) {
@@ -44,6 +46,39 @@ function PublicAPI(_app) {
                         res.json({
                             status: "Updated"
                         });
+                    }
+                });
+            });
+
+        app.route('/meme/page/:page')
+            .get(function (req, res) {
+                Meme.find({'like':{'$gt': 5 }}).skip((req.params.page-1)*pageLimit).limit(pageLimit).exec(function (err, result) {
+                    if (err) {
+                        res.json(err);
+                    } else {
+                        res.json(result);
+                    }
+                });
+            });
+
+        app.route('/waitingmeme/page/:page')
+            .get(function (req, res) {
+                Meme.find({'like':{'$lte': 5 }}).skip((req.params.page-1)*pageLimit).limit(pageLimit).exec(function (err, result) {
+                    if (err) {
+                        res.json(err);
+                    } else {
+                        res.json(result);
+                    }
+                });
+            });
+
+        app.route('/waitingmeme')
+            .get(function (req, res) {
+                Meme.find({'like':{'$lte': 5 }}).count().exec(function (err, result) {
+                    if (err) {
+                        res.status(400).json(err);
+                    } else {
+                        res.json({page: parseInt(Math.ceil(result/pageLimit)), count: result});
                     }
                 });
             });

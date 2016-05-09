@@ -1,12 +1,25 @@
 (function (mainApp) {
-    mainApp.controller('mainPageCtrl', ['$scope','$http','toastr',  function ($scope,$http,toastr) {
+    mainApp.controller('mainPageCtrl', ['$scope','$http','toastr','$stateParams','$state',  function ($scope,$http,toastr,$stateParams,$state) {
         "use strict";
 
         $scope.memeData = null;
+        $scope.currentPage = 1;
+        $scope.allPages = {};
 
-        var getMeme = function(){
-            $http.get('/meme').then(function(res) {
+        var getMeme = function(currentPage){
+            $http.get('/meme/page/'+currentPage).then(function(res) {
                 $scope.memeData = res.data;
+            },function(res) {
+                toastr.error('Bład pobierania danych'+ res.data);
+                console.log('error' + res.data);
+            });
+
+        };
+
+        var getMemeCount = function(currentPage){
+            $http.get('/meme').then(function(res) {
+                $scope.allPages = res.data;
+
             },function(res) {
                 toastr.error('Bład pobierania danych'+ res.data);
                 console.log('error' + res.data);
@@ -49,12 +62,19 @@
             updateMeme(meme,false);
         };
 
+        $scope.nextPage = function(){
+            $scope.currentPage++;
+            $state.go('waiting',{page:$scope.currentPage});
+        };
+
+        $scope.previousPage = function(){
+            $scope.currentPage--;
+            $state.go('waiting',{page:$scope.currentPage});
+        };
+
         $scope.init =function() {
-            getMeme();
+            getMeme($scope.currentPage);
+            getMemeCount();
         }();
-
-
-
-
     }]);
 }(angular.module('mainApp')));

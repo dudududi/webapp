@@ -5,11 +5,11 @@
     $scope.isAdmin = true;  //TODO change to user roles 
 
     $scope.menuTabs = [{
-      url: "main",
+      url: "main({page:1})",
       name: "Głowna",
       hidden: false
     }, {
-      url: "waiting",
+      url: "waiting({page:1})",
       name: "Oczekujące",
       hidden: false
     }, {

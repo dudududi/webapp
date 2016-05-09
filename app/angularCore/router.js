@@ -4,8 +4,11 @@
         $urlRouterProvider.otherwise("/main");
         $stateProvider
             .state('main', {
-                url: "/main",
-                templateUrl: "templates/mainPage.html"
+                url: "/main/page/:page",
+                templateUrl: "templates/mainPage.html",
+                controller: ['$scope', '$stateParams', function ($scope, $stateParams) {
+                    $scope.page = $stateParams.page;
+                }]
             })
             .state('random', {
                 url: "/random",
@@ -19,8 +22,11 @@
                }]
             })
             .state('waiting', {
-                url: "/waiting",
-                templateUrl: "templates/waiting.html"
+                url: "/waiting/page/:page",
+                templateUrl: "templates/waiting.html",
+                controller: ['$scope', '$stateParams', function ($scope, $stateParams) {
+                    $scope.page = $stateParams.page;
+                }]
             })
             .state('add', {
                 url: "/add",
