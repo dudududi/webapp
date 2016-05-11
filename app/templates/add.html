@@ -37,12 +37,10 @@
             </md-button>
         </form>
     </div>
+    <div id="test"></div>
     <div id="imgUpload" style="float: left; width: 600px;">
-        <memegenerator></memegenerator>
-        <div ng-if="fileChoosen" class="animate-if">
-            HEHEHE ELO
-        </div>
-        <div ng-if="!fileChoosen" class="animate-if">
+        <memegenerator ng-show="fileChoosen" class="ng-show"></memegenerator>
+        <div ng-hide="fileChoosen" class="ng-hide">
             <div ngf-drop ngf-select ngf-change="loadImage($file)" class="drop-box"
                  ngf-drag-over-class="'dragover'" accept="image/*" ngf-pattern="'image/*'">
                 Klinij lub przeciagnij zdjecie tutaj

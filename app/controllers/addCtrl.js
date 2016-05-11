@@ -8,43 +8,86 @@
             imgUrl: ""
         };
 
+        $scope.canvas = {};
+        $scope.fileChoosen = false;
+
         $scope.saveMeme = function (meme) {
             $scope.newMemeForm.$setSubmitted();
             if ($scope.newMemeForm.$invalid) {
                 toastr.error('Podane dane są niepoprawne');
                 return;
             }
-            $http.post('/meme', meme).then(function (res) {
-                toastr.success('Mem ' + meme.title + ' dodany');
-                $scope.newMeme = {};
-            }).catch(function (res) {
-                toastr.error('Bład dodawania mema');
-                console.log('error' + res);
-                $scope.newMeme = {};
+            var image = new Image();
+            image.src = $scope.canvas.element.toDataURL();
+            //window.myImg = image;
+            Upload.upload({
+                url: 'meme/upload',
+                method: 'POST',
+                files: image,
+                data: meme
+            }).then(function (resp) {
+                $timeout(function () {
+                    toastr.success('Mem ' + meme.title + ' dodany');
+                });
+            }, null, function (evt) {
+                var progressPercentage = parseInt(100.0 *
+                    evt.loaded / evt.total);
+                console.log ('progress: ' + progressPercentage +
+                    '% ');
             });
         };
 
-        $scope.fileChoosen = false;
-        $scope.canvasContext = undefined;
+        $scope.generateMeme = function () {
+            var element = $scope.canvas.element;
+            var context = element.getContext('2d');
+            var x = element.width / 2;
+            var y = element.height / 8;
+
+            element.width = element.width; // a little hacky...
+
+            //setting background image
+            if ($scope.fileChoosen){
+                context.drawImage($scope.canvas.img, 0, 0, element.width, element.height);
+            }
+
+            //generating title
+            context.font = $scope.canvas.titleSize + "px  Impact";
+            context.fillStyle = 'white';
+            context.strokeStyle = 'black';
+            context.textAlign = 'center';
+            context.fillText($scope.newMeme.title.toUpperCase(), x, y);
+            context.lineWidth = 2;
+            context.strokeText($scope.newMeme.title.toUpperCase(), x, y);
+
+            //generating description
+            context.font = $scope.canvas.descriptionSize + "px  Impact";
+            x = element.width / 2;
+            y = element.height - (element.height / 8);
+            context.fillText($scope.newMeme.description.toUpperCase(), x, y);
+            context.lineWidth = 2;
+            context.strokeText($scope.newMeme.description.toUpperCase(), x, y);
+        };
 
         $scope.loadImage = function(file){
-            alert(file);
-            console.log(file);
-            window.myFile = file;
             var fr = new FileReader();
             fr.onload = function(){
-                alert("file loaded");
                 var img = new Image();
                 img.onload = function(){
                     $scope.fileChoosen = true;
-                    alert("image loaded");
-                    $scope.canvasContext.drawImage(img, 0,0);
+                    $scope.canvas.img = img;
+                    $scope.generateMeme();
                 };
                 img.src = fr.result;
             };
             fr.readAsDataURL(file);
         };
-        var upload = function (file) {
+
+
+        $scope.upload = function () {
+            var image = new Image();
+            image.src = $scope.canvas.element.toDataURL();
+            window.myImg = image;
+            return;
             var file = files[i];
             if (!file.$error) {
                 Upload.upload({
@@ -79,32 +122,11 @@
             template: '<canvas></canvas>',
             replace: true,
             link: function ($scope, el, attrs) {
-                $scope.titleSize = 50;
-                $scope.descriptionSize = 30;
-                var c = el[0];
-                c.height = 600;
-                c.width = 600;
-                $scope.canvasContext = c.getContext("2d");
-
-                $scope.generateMeme = function () {
-                    c.width = c.width;
-                    $scope.canvasContext.font = $scope.titleSize + "px  Impact";
-                    $scope.canvasContext.fillStyle = 'white';
-                    $scope.canvasContext.strokeStyle = 'black';
-                    var x1 = c.width / 2;
-                    var y1 = c.height / 8;
-                    $scope.canvasContext.textAlign = 'center';
-                    $scope.canvasContext.fillText($scope.newMeme.title.toUpperCase(), x1, y1);
-                    $scope.canvasContext.lineWidth = 2;
-                    $scope.canvasContext.strokeText($scope.newMeme.title.toUpperCase(), x1, y1);
-
-                    $scope.canvasContext.font = $scope.descriptionSize + "px  Impact";
-                    var x = c.width / 2;
-                    var y = c.height - (c.height / 8);
-                    $scope.canvasContext.fillText($scope.newMeme.description.toUpperCase(), x, y);
-                    $scope.canvasContext.lineWidth = 2;
-                    $scope.canvasContext.strokeText($scope.newMeme.description.toUpperCase(), x, y);
-                };
+                $scope.canvas.titleSize = 50;
+                $scope.canvas.descriptionSize = 30;
+                $scope.canvas.element = el[0];
+                $scope.canvas.element.width = 600;
+                $scope.canvas.element.height = 450;
             }
         }
     });

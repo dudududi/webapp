@@ -68,7 +68,7 @@ function PublicAPI(_app) {
                 });
             });
 
-            app.post('meme/upload', multipartyMiddleware, function(req, res){
+            app.route('/meme/upload').post(multipartyMiddleware, function(req, res){
                 var file = req.files.file;
                 console.log(file.name);
                 console.log(file.type);
