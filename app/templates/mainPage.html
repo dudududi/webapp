@@ -1,13 +1,15 @@
 <!DOCTYPE HTML PUBLIC >
 <div ng-controller="mainPageCtrl">
-    <md-card ng-repeat="meme in memeData" style="width:800px; text-align:left;">
+    <md-card ng-repeat="meme in memeData | orderBy:['moved_to_main_at']:true "
+             style="width:800px; text-align:left;">
         <md-card-title ui-sref="meme({memeId:meme._id})" style="cursor:pointer">
             <md-card-title-text>
                 <span class="md-headline">{{meme.title}}</span>
-                <span class="md-subhead">
+                <span class="md-subhead" style="color:gray; font-size:12px">
                     <i>{{meme.author}},
-                        {{meme.created_at | date:"yyyy-MM-dd hh:mm"}},
-                        {{meme.description}}</i>
+                        {{meme.created_at | date:"HH:mm dd.MM.yyyy"}}</i>
+                     <i ng-if="meme.edited_at">, <b>Edytowany: {{meme.edited_at | date:"HH:mm dd.MM.yyyy"}}</b></i>
+                     <i ng-if="meme.edited_at">, <b>Na głównej od: {{meme.moved_to_main_at | date:"HH:mm dd.MM.yyyy"}}</b></i>
                 </span>
             </md-card-title-text>
         </md-card-title>
@@ -24,7 +26,7 @@
                 <md-button class="md-icon-button" ng-click="unlikeMeme(meme)">
                     <span class="material-icons">thumb_down</span>
                 </md-button>
-                <md-button class="md-icon-button"  ng-disabled="true">
+                <md-button class="md-icon-button" ng-disabled="true">
                     <span class="material-icons">reply</span>
                 </md-button>
                 <md-button class="md-fab md-mini" style="margin-top: 290px;" ng-class="meme.like>0?'':'md-primary'">
@@ -33,4 +35,12 @@
             </md-card-actions>
         </md-card-content>
     </md-card>
+    <div ng-if="memeData">
+        <md-button class="md-raised md-primary" ng-disabled="currentPage === 1" ng-click="previousPage()">Poprzednia</md-button>
+        <span>{{currentPage}} / {{allPages.page}}</span>
+        <md-button class="md-raised md-primary" ng-disabled="!allPages.page || currentPage === allPages.page" ng-click="nextPage()">Następna</md-button>
+    </div>
+    <div ng-if="memeData.length === 0">
+        <h1>Brak danych</h1>
+    </div>
 </div>

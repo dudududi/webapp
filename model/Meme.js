@@ -5,11 +5,12 @@ var memeSchema = new Schema({
   title: String,
   description: String,
   created_at: Date,
+  edited_at: Date,
+  moved_to_main_at: Date,
   author: String,
   imgUrl: String,
-  comments: [{ body: String, date: Date ,author: String}],
+  comments: [{ body: String, date: Date ,author:{ avatar:String, name: String, id: Number }, like: Number, edited_at: Date}],
   like: Number
-
 });
 
 memeSchema.pre('save', function(next) {
@@ -24,7 +25,7 @@ memeSchema.pre('save', function(next) {
     this.created_at = currentDate;
   }
   this.like = 0;
-
+  
   next(error);
 });
 

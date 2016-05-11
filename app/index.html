@@ -4,6 +4,7 @@
         <title>Bolek.sb</title>
         <meta http-equiv="Content-type" content="text/html; charset=UTF-8"/>
         <meta charset="UTF-8"/>
+        <link rel="shortcut icon" type="image/jpg" href="../resources/img/favicon.jpg"/>
         <!-- bower:css -->
         <link rel="stylesheet" href="../bower_components/angular-material/angular-material.css"/>
         <link rel="stylesheet" href="../bower_components/angular-material-icons/angular-material-icons.css"/>
@@ -15,6 +16,7 @@
         <!-- endinject -->
     </head>
     <body ng-controller="appCtrl">
+    <span id="top"></span>
         <div ng-cloak>
             <md-toolbar>
                 <div class="md-toolbar-tools">
@@ -58,7 +60,7 @@
                 </md-tabs>
             </md-toolbar>
         </div>
-        <div ui-view></div>
+        <div class="centered" ui-view></div>
 
         <!-- bower:js -->
         <script src="../bower_components/jquery/dist/jquery.js"></script>
@@ -78,6 +80,7 @@
         <script src="/angularCore/router.js"></script>
         <script src="/controllers/addCtrl.js"></script>
         <script src="/controllers/appCtrl.js"></script>
+        <script src="/controllers/filters.js"></script>
         <script src="/controllers/loginCtrl.js"></script>
         <script src="/controllers/mainPageCtrl.js"></script>
         <script src="/controllers/memeCtrl.js"></script>

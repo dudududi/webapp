@@ -18,8 +18,12 @@ Webapp - kwejk czy coś w tym stylu
 
 ### 3. Podstawowe funkcjonalności ###
 
-* Integracja z Facebook'iem
-* Obsługa zdjęć+wideo
-* Upload zdjęć/wideo
-* Mechanizm losowania + głosowanie //@łukasz - ja to bym losowanie zrobił na zasadzie ilości like-ów
+* Autoryzacja - strona kliencka (Szymon)
+* Generowanie mema w Canvasie (Kamil)
 * Dodanie komentarzy do mema - pełny CRUD (Łukasz)
+
+### 4. Rozwijanie funkcjonalności ###
+
+* Autoryzacja - strona serwera (Szymon)
+* Upload zdjec na serwer (Kamil)
+* Paginacja + poczekalnia (Łukasz)
