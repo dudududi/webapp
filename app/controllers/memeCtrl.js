@@ -57,6 +57,7 @@
             };
 
             var updateMeme = function(meme, isLike) {
+                delete meme.image; //request cannot be too large!
                 $http.put('/meme/', meme).then(function(res) {
                     if (isLike !== undefined) {
                         if (isLike === true) {

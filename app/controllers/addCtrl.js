@@ -17,24 +17,27 @@
                 toastr.error('Podane dane są niepoprawne');
                 return;
             }
-            var image = new Image();
-            image.src = $scope.canvas.element.toDataURL();
-            //window.myImg = image;
+            var blobBin = atob($scope.canvas.element.toDataURL().split(",")[1]);
+            var array = [];
+            for (var i = 0; i < blobBin.length; i++){
+                array.push(blobBin.charCodeAt(i));
+            }
+            var file = new File([new Blob([new Uint8Array(array)], {type: 'image/png'})], "file");
             Upload.upload({
-                url: 'meme/upload',
+                url: 'meme',
                 method: 'POST',
-                files: image,
-                data: meme
+                data: {
+                    file: file,
+                    meme: meme
+                }
             }).then(function (resp) {
-                $timeout(function () {
-                    toastr.success('Mem ' + meme.title + ' dodany');
-                });
+                toastr.success('Mem ' + meme.title + ' dodany');
             }, null, function (evt) {
                 var progressPercentage = parseInt(100.0 *
                     evt.loaded / evt.total);
                 console.log ('progress: ' + progressPercentage +
                     '% ');
-            });
+            }); 
         };
 
         $scope.generateMeme = function () {
@@ -81,39 +84,6 @@
             };
             fr.readAsDataURL(file);
         };
-
-
-        $scope.upload = function () {
-            var image = new Image();
-            image.src = $scope.canvas.element.toDataURL();
-            window.myImg = image;
-            return;
-            var file = files[i];
-            if (!file.$error) {
-                Upload.upload({
-                    url: 'meme/upload',
-                    method: 'POST',
-                    file: file,
-                    data: {
-                        username: $scope.username,
-                        file: file
-                    }
-                }).then(function (resp) {
-                    $timeout(function () {
-                        $scope.log = 'file: ' +
-                            resp.config.data.file.name +
-                            ', Response: ' + JSON.stringify(resp.data) +
-                            '\n' + $scope.log;
-                    });
-                }, null, function (evt) {
-                    var progressPercentage = parseInt(100.0 *
-                        evt.loaded / evt.total);
-                    $scope.log = 'progress: ' + progressPercentage +
-                        '% ' + evt.config.data.file.name + '\n' +
-                        $scope.log;
-                });
-            }
-        }
 
     }]);
     mainApp.directive('memegenerator', function () {

@@ -8,7 +8,7 @@ var memeSchema = new Schema({
   edited_at: Date,
   moved_to_main_at: Date,
   author: String,
-  imgUrl: String,
+  image: {data: Buffer, contentType: String},
   comments: [{ body: String, date: Date ,author:{ avatar:String, name: String, id: Number }, like: Number, edited_at: Date}],
   like: Number
 });

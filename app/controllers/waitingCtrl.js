@@ -39,6 +39,7 @@
         };
 
         var updateMeme = function (meme, isLike) {
+            delete meme.image; //request cannot be too large!
             $http.put('/meme/', meme).then(function (res) {
                 if (isLike) {
                     toastr.success('Lubisz mema ' + meme.title);

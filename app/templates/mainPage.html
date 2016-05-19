@@ -16,7 +16,7 @@
         <md-card-content layout="row" layout-align="space-between">
             <div class="xl-media card-media" style="margin-top:60px; cursor:pointer" ui-sref="meme({memeId:meme._id})">
                 <div>
-                    <img ng-src="{{meme.imgUrl}}" width="600px" height="450px"/>
+                    <img ng-src="data:{{meme.image.contentType}};base64,{{meme.image.data}}" width="600px" height="450px"/>
                 </div>
             </div>
             <md-card-actions layout="column">

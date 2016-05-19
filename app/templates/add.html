@@ -24,13 +24,6 @@
                     <div ng-message="required">Autor jest wymagany.</div>
                 </div>
             </md-input-container>
-            <md-input-container class="md-block">
-                <label>Scieżka do zdjecia</label>
-                <input required name="imgUrl" ng-model="newMeme.imgUrl">
-                <div ng-messages="newMemeForm.imgUrl.$error">
-                    <div ng-message="required">Ścieżka jest wymagana.</div>
-                </div>
-            </md-input-container>
 
             <md-button class="md-raised md-primary" ng-click="saveMeme(newMeme)">
                 <span>Dodaj mema</span>

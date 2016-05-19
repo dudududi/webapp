@@ -14,7 +14,7 @@
         <md-card-content layout="row" layout-align="space-between">
             <div class="xl-media card-media" style="margin-top:60px;">
                 <div>
-                    <img ng-src="{{memeData.imgUrl}}" width="600px" height="450px"/>
+                    <img ng-src="data:{{memeData.image.contentType}};base64,{{memeData.image.data}}" width="600px" height="450px"/>
                 </div>
             </div>
             <md-card-actions layout="column">
@@ -47,10 +47,6 @@
             <md-input-container class="md-block">
                 <label>Tytył</label>
                 <input ng-model="editedMeme.title">
-            </md-input-container>
-            <md-input-container class="md-block">
-                <label>Ścieżka</label>
-                <input ng-model="editedMeme.imgUrl">
             </md-input-container>
             <md-button class="md-raised md-primary" ng-click="updateMeme(editedMeme)">
                 <span>Zapisz</span>

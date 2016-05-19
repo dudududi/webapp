@@ -1,7 +1,8 @@
 //==================> DATABASE MODEL IMPORTS <==================
 var Meme = require('./model/Meme');
-var multiparty = require('connect-multiparty');
-var multipartyMiddleware = multiparty();
+var multer = require('multer');
+var fs = require('fs');
+var upload = multer({dest: 'tmp/upload'});
 
 function PublicAPI(_app) {
     var app = _app;
@@ -18,9 +19,13 @@ function PublicAPI(_app) {
                     }
                 });
             })
-            .post(function (req, res) {
-                if (req.body) {
-                    var meme = new Meme(req.body);
+            .post(upload.single("file"), function (req, res) {
+                if (req.file && req.body){
+                    //process file upload to server
+                    req.body.meme.image = {};
+                    req.body.meme.image.data = fs.readFileSync(req.file.path);
+                    req.body.meme.image.contentType = 'image/png';
+                    var meme = new Meme(req.body.meme);
                     meme.save(function (err) {
                         if (err) {
                             res.status(400).json({
@@ -30,6 +35,7 @@ function PublicAPI(_app) {
                             res.json({
                                 status: "Saved"
                             });
+                            fs.unlink(req.file.path);
                         }
                     });
                 }
@@ -58,6 +64,9 @@ function PublicAPI(_app) {
                     if (err) {
                         res.json(err);
                     } else {
+                        result.forEach(function(meme){
+                            meme._doc.image.data = meme._doc.image.data.toString("base64");
+                        });
                         res.json(result);
                     }
                 });
@@ -69,6 +78,9 @@ function PublicAPI(_app) {
                     if (err) {
                         res.json(err);
                     } else {
+                        result.forEach(function(meme){
+                            meme._doc.image.data = meme._doc.image.data.toString("base64");
+                        });
                         res.json(result);
                     }
                 });
@@ -93,6 +105,7 @@ function PublicAPI(_app) {
                     if (err) {
                         res.json(err);
                     } else {
+                        result._doc.image.data = result._doc.image.data.toString("base64");
                         res.json(result);
                     }
                 });
@@ -161,12 +174,6 @@ function PublicAPI(_app) {
                     }
                 });
         });
-
-            app.route('/meme/upload').post(multipartyMiddleware, function(req, res){
-                var file = req.files.file;
-                console.log(file.name);
-                console.log(file.type);
-            });
     };
 
     //public method where all routes will be defined.
