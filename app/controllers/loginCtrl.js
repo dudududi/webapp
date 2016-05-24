@@ -2,7 +2,8 @@
  * Created by Szymon on 19.03.2016.
  */
 (function (mainApp) {
-    mainApp.controller('loginCtrl', ['$rootScope', '$scope', '$location', '$window', 'Main', function ($rootScope, $scope, $location, $window, Main, $mdDialog) {
+    mainApp.controller('loginCtrl', ['$rootScope', '$scope', '$location', '$window', 'Main',
+        function ($rootScope, $scope, $location, $window, Main, $mdDialog) {
         "use strict";
         $scope.user={
             login:'',
@@ -18,8 +19,8 @@
 
         $scope.login = function(){
             var formData={
-                email: $scope.email,
-                password: $scope.password
+                login: $scope.user.login,
+                password: $scope.user.password
             }
 
             Main.login(formData, function (res) {

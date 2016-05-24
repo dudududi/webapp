@@ -1,9 +1,8 @@
 /**
  * Created by Szymon on 16.04.2016.
  */
-'user strict'
 
-angular.module('mainApp').factory('Main', ['$http', '$localStorage', function ($http, $localStorage) {
+angular.module('mainApp').factory('Main', ['$http', '$window', function ($http, $window) {
     var baseUrl = "localhost";
     
     function changeUser(user) {
@@ -11,6 +10,7 @@ angular.module('mainApp').factory('Main', ['$http', '$localStorage', function ($
     }
     
     function urlBase64Decode(str) {
+
         var output = str.replace('-', '+').replace('_', '/');
         switch(output.length %4){
             case 0:
@@ -27,7 +27,7 @@ angular.module('mainApp').factory('Main', ['$http', '$localStorage', function ($
         return window.atob(output);
     }
     function getUserFromToken() {
-        var token = $localStorage.token;
+        var token = $window.localStorage.token;
         var user = {};
         if(typeof token !== 'undefined'){
             var encoded = token.split('.')[1];
@@ -40,17 +40,17 @@ angular.module('mainApp').factory('Main', ['$http', '$localStorage', function ($
 
     return{
         save: function (data, success, error) {
-            $http.post(baseUrl + '/login', data).success(success).error(error)
+            $http.post("/signin", data).success(success).error(error)
         },
         login: function (data, success, error) {
-            $http.post(baseUrl+'/authenticate', data).success(success).error(error)
+            $http.post('/authenticate', data).success(success).error(error)
         },
         me: function (success, error) {
-            $http.get(baseUrl+'/me').success(success).error(error)
+            $http.get('/me').success(success).error(error)
         },
         logout: function (success) {
             changeUser({});
-            delete $localStorage.token;
+            delete $window.localStorage.token;
             success();
         }
     };

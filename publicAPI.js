@@ -1,6 +1,8 @@
 //==================> DATABASE MODEL IMPORTS <==================
 var Meme = require('./model/Meme');
 var User = require('./model/User');
+var jwt = require('jsonwebtoken');
+
 
 function PublicAPI(_app) {
     var app = _app;
@@ -113,7 +115,7 @@ function PublicAPI(_app) {
                             userModel.email = req.body.email;
                             userModel.login = req.body.login;
                             userModel.password = req.body.password;
-                            userMode.save(function(err, user){
+                            userModel.save(function(err, user){
                                 user.token = jwt.sign(user, process.env.JWT_SECRET);
                                 user.save(function(err, user1){
                                     res.json({

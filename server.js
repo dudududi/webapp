@@ -4,8 +4,7 @@ var express = require('express'),
     app = express(),
     mongoose = require('mongoose'),
     bodyParser = require('body-parser'),
-    morgan = require('morgan'),
-    jwt = require('jsonwebtoken');
+    morgan = require('morgan');
 
 //==================> DATABASE URI <==================
 var remoteDBUrl = 'mongodb://admin:admin@ds062178.mlab.com:62178/db_projeckt';

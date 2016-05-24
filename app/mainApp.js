@@ -10,23 +10,5 @@
             preventOpenDuplicates: false,
             target: 'body'
           });
-
-        $httpProvider.interceptors.push(['$q', '$location', '$window', function ($q, $location, $window) {
-            return{
-                'request': function (config) {
-                    config.headers = config.headers || {};
-                    if(window.localStorage){
-                        config.headers.Authorization = 'Bearer '+window.localStorage.token;
-                    }
-                    return config;
-                },
-                'responseError': function (response) {
-                    if(response.status === 401 || response.status === 403){
-                        $location.path('/login');
-                    }
-                    return $q.reject(response);
-                }
-            };
-        }]);
       });
 }());
