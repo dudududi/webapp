@@ -108,7 +108,7 @@ function PublicAPI(_app) {
                         if (user) {
                             res.json({
                                 type: false,
-                                data: "User already exists!"
+                                data: "Uzytkownik istnieje!"
                             });
                         } else {
                             var userModel = new User();
@@ -116,7 +116,7 @@ function PublicAPI(_app) {
                             userModel.login = req.body.login;
                             userModel.password = req.body.password;
                             userModel.save(function(err, user){
-                                user.token = jwt.sign(user, process.env.JWT_SECRET);
+                                user.token = jwt.sign(user, 'ssh');
                                 user.save(function(err, user1){
                                     res.json({
                                         type: true,

@@ -28,7 +28,7 @@
                     alert(res.data)
                 } else{
                     $window.localStorage.token = res.data.token;
-                    window.location = "/";
+                    window.location = "/#/main";
                 }
             }, function () {
                 $rootScope.error = 'Failed to login';

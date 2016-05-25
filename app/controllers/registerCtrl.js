@@ -31,7 +31,7 @@
                     alert(res.data)
                 } else{
                     $window.localStorage.token = res.data.token;
-                    $window.location = "/main"
+                    alert("Gratulacje!\n Udalo Ci sie zarejestrowac");
                 }
             }, function () {
                 $rootScope.error = 'Failed to register';
