@@ -18,7 +18,13 @@
     "gulp-uglifycss": "^1.0.6",
     "gulp-wiredep": "0.0.0",
     "mongodb": "^2.1.7",
-    "mongoose": "^4.4.6"
+    "mongoose": "^4.4.6",
+    "body-parser": "^1.15.0",
+    "morgan": "latest",
+    "jsonwebtoken": "0.4.0"
+  },
+  "engines": {
+    "node": ">=0.10.0"
   },
   "devDependecies": {}
 }

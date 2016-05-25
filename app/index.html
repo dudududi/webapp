@@ -44,7 +44,7 @@
 
                                     <md-menu-item>
                                         <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-                                            <md-button class="md-raised" ng-disabled="user.login === '' || user.password===''">Zaloguj</md-button>
+                                            <md-button class="md-raised" ng-disabled="user.login === '' || user.password===''" ng-click="login()">Zaloguj</md-button>
                                             <md-button class="md-raised md-warn" ui-sref="register">Rejestracja</md-button>
                                         </section>
                                     </md-menu-item>
@@ -78,6 +78,7 @@
         <!-- inject:js -->
         <script src="/mainApp.js"></script>
         <script src="/angularCore/router.js"></script>
+        <script src="/controllers/services/authService.js"></script>
         <script src="/controllers/addCtrl.js"></script>
         <script src="/controllers/appCtrl.js"></script>
         <script src="/controllers/filters.js"></script>

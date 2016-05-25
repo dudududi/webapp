@@ -1,6 +1,6 @@
 (function (mainApp) {
     "use strict";
-    mainApp.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+    mainApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function ($stateProvider, $urlRouterProvider, $httpProvider) {
         $urlRouterProvider.otherwise("/main");
         $stateProvider
             .state('main', {
@@ -37,5 +37,25 @@
                 templateUrl: "templates/register.html"
             });
 
+        $httpProvider.interceptors.push(['$q', '$location', '$window', function ($q, $location, $window) {
+            return{
+                'request': function (config) {
+                    config.headers = config.headers || {};
+                    if($window.localStorage){
+                        config.headers.Authorization = 'Bearer '+$window.localStorage.token;
+                    }
+                    return config;
+                },
+                'responseError': function (response) {
+                    if(response.status === 401 || response.status === 403){
+                        $location.path('/login');
+                    }
+                    return $q.reject(response);
+                }
+            };
+        }]);
+
     }]);
+
+
 }(angular.module('mainApp')));
